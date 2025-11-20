@@ -1,0 +1,86 @@
+/* # Custom roperties */
+:root {
+	--pink: #e53170;
+	--blue: #6ecbf2;
+}
+
+/* # Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* # Generics */
+body {
+	font-family: 'Fredoka', sans-serif;
+}
+
+header {
+	margin: 50px 0;
+}
+
+h1 {
+	font-size: 40px;
+	color: var(--pink);
+	text-align: center;
+}
+
+p {
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* # Utils */
+
+.container {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.row {
+	display: flex;
+	margin: 0 -1rem;
+	flex-wrap: wrap;
+}
+
+.card {
+	margin: 1rem;
+	width: calc(100% / 3 - 2rem);
+	color: #fff;
+	height: 100px;
+	background-color: #000;
+	display: flex;
+}
+
+.card-img {
+	height: 100%;
+	margin-right: 10px;
+}
+
+.card h3 {
+	text-transform: uppercase;
+}
+
+.card-content {
+	padding: 10px;
+	line-height: calc(80px / 3);
+}
+
+a {
+	color: var(--blue);
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 1000px) {
+	.card {
+		width: calc(100% / 2 - 2rem);
+	}
+}
+@media only screen and (max-width: 670px) {
+	.card {
+		width: calc(100% - 2rem);
+	}
+}
