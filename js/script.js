@@ -1,47 +1,10 @@
-const teamMembers = [
-	{
-		name: "Marco Bianchi",
-		role: "Designer",
-		email: "marcobianchi@team.com",
-		img: "img/male1.png"
-	},
-	{
-		name: "Laura Rossi",
-		role: "Front-end Developer",
-		email: "laurarossi@team.com",
-		img: "img/female1.png"
-	},
-	{
-		name: "Giorgio Verdi",
-		role: "Back-end Developer",
-		email: "giorgioverdi@team.com",
-		img: "img/male2.png"
-	},
-	{
-		name: "Marta Ipsum",
-		role: "SEO Specialist",
-		email: "martarossi@team.com",
-		img: "img/female2.png"
-	},
-	{
-		name: "Roberto Lorem",
-		role: "SEO Specialist",
-		email: "robertolorem@team.com",
-		img: "img/male3.png"
-	},
-	{
-		name: "Daniela Amet",
-		role: "Analyst",
-		email: "danielaamet@team.com",
-		img: "img/female3.png"
-	}
-];
+const apiURL = "https://boolean-teachers.github.io/mock/api/members/";
 
-function renderCards() {
+function renderCards(dati) {
 	const containerElement = document.getElementById("cards-container");
 	let htmlCards = "";
 
-	for (const teamMember of teamMembers) {
+	for (const teamMember of dati) {
 
 		const card = `<div class="card">
 		<img class="card-img" src="${teamMember.img}" alt="${teamMember.name}" />
@@ -59,20 +22,14 @@ function renderCards() {
 	containerElement.innerHTML = htmlCards;
 }
 
-renderCards();
+axios.get(apiURL).then(r => {
 
-document.getElementById("addBtn").addEventListener("click", function () {
+	renderCards(r.data);
 
-	if (teamMembers.length == 6) {
-		teamMembers.push({
-			name: "Luca Lambiase",
-			role: "Teacher",
-			email: "luca@lambia.it",
-			img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"
-		});
+}).catch(err => {
+	console.log("Errore: ", err.message);
+	document.getElementById("cards-container").innerHTML = "Errore chiamata alla web-api";
 
-		renderCards();
-		document.getElementById("addBtn").remove();
-	}
-
+}).finally(() => {
+	console.log("Chiamata terminata");
 });
